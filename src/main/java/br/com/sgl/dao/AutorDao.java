@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import br.com.sgl.model.Autor;
+import br.com.sgl.model.Livro;
 
 public class AutorDao {
 	
@@ -149,5 +150,25 @@ public class AutorDao {
 	        
 	        // Retorna o primeiro autor encontrado ou null se nenhum autor for encontrado
 	        return autores.isEmpty() ? null : autores.get(0);
+	}
+	
+	public List<Autor> BuscarAutoresPorNacionalidade(String nacionalidade){
+		EntityManager em = emf.createEntityManager();
+		List<Autor> autores = null;
+
+        try {
+            // Consulta JPQL para buscar autores pela nacionalidade
+            String jpql = "SELECT a FROM Autor a WHERE a.nacionalidade = :nacionalidade";
+            TypedQuery<Autor> query = em.createQuery(jpql, Autor.class);
+            query.setParameter("nacionalidade", nacionalidade);
+            autores = query.getResultList();
+        } catch (NoResultException e) {
+            // Caso não encontre resultados, você pode lidar com a exceção se necessário
+            autores = List.of(); // Retorna uma lista vazia
+        } finally {
+            em.close();
+        }
+
+        return autores;
 	}
 }

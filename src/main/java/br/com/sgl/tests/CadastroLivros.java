@@ -1,4 +1,6 @@
 package br.com.sgl.tests;
+import java.util.List;
+
 import br.com.sgl.dao.AutorDao;
 import br.com.sgl.dao.LivroDao;
 import br.com.sgl.model.Autor;
@@ -9,24 +11,24 @@ public class CadastroLivros {
 	public static void main(String[] args) {
 		
 		// INSTANCIAS de AUTOR
-		Autor autor2 = new Autor("C S Lewis", "hungaro");
+		Autor autor3 = new Autor("Raul Pompeia", "Brasileiro");
 		Autor autor4 = new Autor("Machado de Assis", "Brasileiro");
 		
 		// CADASTRAR AUTOR
 		AutorDao autorDao = new AutorDao();
-//		autorDao.cadastrarAutor(autor2);
+//		autorDao.cadastrarAutor(autor3);
 //		autorDao.cadastrarAutor(autor4);
 		
 		
 		// INSTANCIAS DE LIVRO
-		Livro livro6 = new Livro("O leao a feitceira e o guarda roupa", "xyz02506", 1998, autor2);
-		Livro livro7 = new Livro("principe caspian", "xyz0544", 1999, autor2);
+		Livro livro8 = new Livro("O Ateneu", "xyz02506", 1998, autor3);
+//		Livro livro7 = new Livro("principe caspian", "xyz0544", 1999, autor2);
 		Livro livro5 = new Livro("Helena", "xyz0544", 1999, autor4);
 
 
 		// CADASTRAR LIVROS
 		LivroDao livroDao = new LivroDao();
-//		livroDao.cadastrarLivro(livro6);	
+//		livroDao.cadastrarLivro(livro8);	
 //		livroDao.cadastrarLivro(livro7);
 //		livroDao.cadastrarLivro(livro5);
 		
@@ -91,7 +93,21 @@ public class CadastroLivros {
 		
 
 //		BUSCAR AUTOR PELO NOME DO LIVRO
-		Autor autor = autorDao.buscarAutorPorNomeLivro("principe caspian");
-		System.out.println(autor.getNome());
+//		Autor autor = autorDao.buscarAutorPorNomeLivro("principe caspian");
+//		System.out.println(autor.getNome());
+		
+		
+		
+		List<Autor> a = autorDao.BuscarAutoresPorNacionalidade("Bugaro");
+		if (a != null && !a.isEmpty()) {
+          System.out.println("autores no banco de dados:");
+          for (Autor autor : a) {
+              System.out.println("ID: " + autor.getAutor_id() + ", nome: " + autor.getNome() +
+                                 ", nacionalidade: " + autor.getNacionalidade());
+          }
+      } else {
+          System.out.println("Nenhum autor encontrado.");
+      }
+		
 	}	
 }
