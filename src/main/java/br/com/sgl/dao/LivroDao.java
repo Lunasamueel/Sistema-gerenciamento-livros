@@ -8,7 +8,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import br.com.sgl.model.Autor;
 import br.com.sgl.model.Livro;
 
 public class LivroDao {
@@ -127,10 +126,4 @@ public class LivroDao {
 
         return livros;
     }
-	
-	
-	
-	
-
-
 }

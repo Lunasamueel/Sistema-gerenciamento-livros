@@ -1,7 +1,4 @@
 package br.com.sgl.tests;
-
-import java.util.List;
-
 import br.com.sgl.dao.AutorDao;
 import br.com.sgl.dao.LivroDao;
 import br.com.sgl.model.Autor;
@@ -50,47 +47,51 @@ public class CadastroLivros {
 		
 		
 		// LISTAR TODOS OS LIVROS
-		List<Livro> livros = livroDao.buscarTodos();
-		
-		if (livros != null && !livros.isEmpty()) {
-            System.out.println("Livros no banco de dados:");
-            for (Livro livro : livros) {
-                System.out.println("ID: " + livro.getId() + ", Título: " + livro.getTitulo() +
-                                   ", ISBN: " + livro.getIsbn() + ", Ano: " + livro.getAnoPublicacao() 
-                                    );
-            }
-        } else {
-            System.out.println("Nenhum livro encontrado.");
-        }
-		
+//		List<Livro> livros = livroDao.buscarTodos();
 //		
+//		if (livros != null && !livros.isEmpty()) {
+//            System.out.println("Livros no banco de dados:");
+//            for (Livro livro : livros) {
+//                System.out.println("ID: " + livro.getId() + ", Título: " + livro.getTitulo() +
+//                                   ", ISBN: " + livro.getIsbn() + ", Ano: " + livro.getAnoPublicacao() 
+//                                    );
+//            }
+//        } else {
+//            System.out.println("Nenhum livro encontrado.");
+//        }
+		
+		
 		// BSUCAR TODOS OS AUTORES
-		List<Autor> autores = autorDao.buscarTodosOsAutores();
-		
-		if (autores != null && !autores.isEmpty()) {
-            System.out.println("autores no banco de dados:");
-            for (Autor autor : autores) {
-                System.out.println("ID: " + autor.getAutor_id() + ", nome: " + autor.getNome() +
-                                   ", nacionalidade: " + autor.getNacionalidade());
-            }
-        } else {
-            System.out.println("Nenhum autor encontrado.");
-        }
-		
+//		List<Autor> autores = autorDao.buscarTodosOsAutores();
+//		
+//		if (autores != null && !autores.isEmpty()) {
+//            System.out.println("autores no banco de dados:");
+//            for (Autor autor : autores) {
+//                System.out.println("ID: " + autor.getAutor_id() + ", nome: " + autor.getNome() +
+//                                   ", nacionalidade: " + autor.getNacionalidade());
+//            }
+//        } else {
+//            System.out.println("Nenhum autor encontrado.");
+//        }
+//		
 		
 		
 		// BUSCAR LIVROS POR AUTOR
-		List<Livro> livros1 = livroDao.buscarLivrosPorNomeAutor("Machado de Assis");
-		System.out.println(livros);
-		if (livros1 != null && !livros1.isEmpty()) {
-            System.out.println("livros no banco de dados:");
-            for (Livro livro : livros1) {
-                System.out.println("ID: " + livro.getId() + ", titulo: " + livro.getTitulo() +
-                                   ", ano pulbicacao: " + livro.getAnoPublicacao());
-            }
-        } else {
-            System.out.println("Nenhum livro encontrado.");
-        }
+//		List<Livro> livros1 = livroDao.buscarLivrosPorNomeAutor("Machado de Assis");
+//		System.out.println(livros);
+//		if (livros1 != null && !livros1.isEmpty()) {
+//            System.out.println("livros no banco de dados:");
+//            for (Livro livro : livros1) {
+//                System.out.println("ID: " + livro.getId() + ", titulo: " + livro.getTitulo() +
+//                                   ", ano pulbicacao: " + livro.getAnoPublicacao());
+//            }
+//        } else {
+//            System.out.println("Nenhum livro encontrado.");
+//        }
 		
+
+//		BUSCAR AUTOR PELO NOME DO LIVRO
+		Autor autor = autorDao.buscarAutorPorNomeLivro("principe caspian");
+		System.out.println(autor.getNome());
 	}	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -17,6 +18,30 @@ public class AutorDao {
 	public AutorDao() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Autor buscarAutorPorNomeLivro(String titulo) {
+		EntityManager entityManager = emf.createEntityManager();
+		Autor autor = null;
+		
+		try {
+			String jpql = "SELECT a \r\n"
+					+ "FROM Autor a \r\n"
+					+ "JOIN a.livros l \r\n"
+					+ "WHERE l.titulo = :titulo";
+			TypedQuery<Autor> query = entityManager.createQuery(jpql, Autor.class);
+            query.setParameter("titulo", titulo);
+            autor = query.getSingleResult();
+		} catch (NoResultException e) {
+            // Caso não encontre resultados, você pode lidar com a exceção se necessário
+            autor = (Autor) List.of(); // Retorna uma lista vazia
+        } finally {
+            entityManager.close();
+        }
+		
+		return autor;
+
+	}
+	
 
 
 	public void cadastrarAutor(Autor autor) {
